@@ -1,0 +1,19 @@
+{
+  "name": "node_mysql_todolist",
+  "version": "1.0.0",
+  "description": "Create TodoList with Node.js/MySQL/Vue.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "Aleksey Belchenkov",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
