@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const todoRoutes = require('./routes/todo');
+const sequelize = require('./utils/database');
 
 const app = express();
 
@@ -15,6 +16,16 @@ app.use((req, res, next) => {
     res.sendFile('/index.html');
 });
 
-app.listen(PORT, () => {
-    console.log(`Server run on localhost:${PORT}`);
-});
+async function start() {
+    try {
+        await sequelize.sync();
+        app.listen(PORT, () => {
+            console.log(`Server run on localhost:${PORT}`);
+        });
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+start();
+
