@@ -13,15 +13,22 @@ new Vue({
         addTodo() {
             const title = this.todoTitle.trim();
             if (!title) {
-                return
+                return;
             }
-            this.todos.push({
-                title: title,
-                id: Math.random(),
-                done: false,
-                date: new Date()
-            });
-            this.todoTitle = ''
+
+            fetch('/api/todo', {
+               method: 'post',
+               headers: {
+                   'Content-Type': 'application/json'
+               },
+               body: JSON.stringify({title})
+            })
+                .then(({todo}) => {
+                    console.log(todo);
+                    this.todos.push(todo);
+                    this.todoTitle = '';
+            })
+                .catch(err => console.log(err));
         },
         removeTodo(id) {
             this.todos = this.todos.filter(t => t.id !== id);
