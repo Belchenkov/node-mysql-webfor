@@ -6,9 +6,10 @@ const Todo = require('../models/todo');
 /**
  * Get list tasks
  */
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try {
-
+        const todos = await Todo.findAll();
+        res.status(200).json(todos);
     } catch (err) {
         console.log(err);
         res.status(500).json({
