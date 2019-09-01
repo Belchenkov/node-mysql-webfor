@@ -14,7 +14,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(graphqlHTTP({
     schema,
-    rootValue: resolver
+    rootValue: resolver,
+    graphiql: true
 }));
 
 app.use((req, res, next) => {
